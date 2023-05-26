@@ -44,7 +44,6 @@ public class ReservationController {
         @RequestPart(required = false) ReservationRequestDTO ReservationReq,
         @RequestPart(required = false) MultipartFile image) throws IOException {
 
-        System.out.println("date : " + ReservationReq.getReservationDate());
         ReservationReq.setReservationDate(ReservationReq.getReservationDate());
         int res = reservationService.createReservation(userIdx, ReservationReq, image);
 
@@ -56,7 +55,7 @@ public class ReservationController {
         @RequestPart(required = false) UpdateReservationRequestDTO req,
         @RequestPart(required = false) MultipartFile image,
         @PathVariable int reservationIdx) throws IOException{
-        System.out.println(req.getReservationDate());
+
         int res = reservationService.updateReservation(userIdx, reservationIdx, req, image);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
@@ -86,7 +85,7 @@ public class ReservationController {
     public UrlResource reservationPhoto(@PathVariable String encodePath) throws MalformedURLException{
         String decodePhotoPath = ImageUtil.getDecodePhotoPath(encodePath);
         String res = Paths.get(UPLOAD_PATH, decodePhotoPath).toString();
-        System.out.println(res);
+
         return new UrlResource("file:" + res);
     }
 

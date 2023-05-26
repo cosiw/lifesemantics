@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            //h2 콘솔 사용
             .csrf().disable().headers().frameOptions().disable()
             .and()
             .cors(c -> {
